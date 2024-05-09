@@ -1,6 +1,7 @@
 SELECT 
     CONCAT('https://archivessearch.lib.uconn.edu/staff/locations/',
-            id) AS uri,
+            id,
+            '/edit') AS uri,
     floor,
     coordinate_1_label,
     CONVERT( coordinate_1_indicator , UNSIGNED) AS aisle_num,
