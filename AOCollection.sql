@@ -10,6 +10,8 @@ FROM
     archival_object ao
         LEFT JOIN
     resource r ON ao.root_record_id = r.id
+        LEFT JOIN
+    enumeration_value ev ON ev.id = ao.level_id
 WHERE
-    ao.level_id = 889
+    ev.value LIKE '%collection%'
 ;
