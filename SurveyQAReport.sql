@@ -18,7 +18,9 @@ SELECT
     ev.value,
     tc.indicator,
     tc.barcode 'container barcode',
-    cp.name 'container profile'
+    cp.name 'container profile',
+    tc.last_modified_by,
+    tc.user_mtime
 FROM
     location loc
         LEFT JOIN
@@ -31,3 +33,6 @@ FROM
     top_container_profile_rlshp ON tc.id = top_container_profile_rlshp.top_container_id
         LEFT JOIN
     container_profile cp ON cp.id = top_container_profile_rlshp.container_profile_id
+WHERE
+    tc.user_mtime >= DATE_SUB(CURRENT_DATE, INTERVAL 2 WEEK)
+        AND tc.barcode LIKE '%42%'
